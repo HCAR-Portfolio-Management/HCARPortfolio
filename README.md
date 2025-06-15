@@ -44,15 +44,16 @@
 
 -   This docker container can be built with the following bash command
     
-        sudo docker build -t HCAR ./ && sudo docker image prune -y
+        sudo docker build -t test ./ && sudo docker image prune -y
+
 -   and can be run with
     
-        sudo docker run -ti -p 8000:8000 HCAR
+        sudo docker run --net host -ti -p 8000:8000 test
     
     -   This will set up the environment variables listed in Dockerfile, and then call the script .src/setup.sh
         -   As of 10:13 A.M. 03/08/25, setup.sh will enable the
             MariaDB server and use it to run src/sql/init.sql
-    -   After this, you will be in an interactive bash shell within the docker environment.
+    -   After this, you should be able to connect to the site at http://localhost:8000
 
 
 <a id="org510c4a8"></a>
