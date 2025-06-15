@@ -1,0 +1,79 @@
+#+title: Readme
+#+author: Michael Thoreson
+
+* HCAR ARTIST PORTFOLIO DATABASE
+** overview
+- This contians the source code for the HCAR artist portfolio database,
+  as well as a Dockerfile that is intended to initialize and run the database
+  and website.
+- This project uses Django for client and data-tier, MariaDB for backend
+  and gUnicorn for hosting.
+** Prerequisites
+- Docker CLI
+** Instructions
+*** Testing
+- This docker container can be built with the following bash command
+  #+BEGIN_SRC bash
+sudo docker build -t HCAR ./ && sudo docker image prune -y
+  #+END_SRC
+- and can be run with
+  #+BEGIN_SRC bash
+sudo docker run -ti HCAR
+  #+END_SRC
+  - This will set up the environment variables listed in Dockerfile, and then call the script .src/setup.sh
+    - As of 10:13 A.M. 03/08/25, setup.sh will enable the
+      MariaDB server and use it to run src/sql/init.sql
+  - After this, you will be in an interactive bash shell within the docker environment.
+*** Development
+All development should ideally be done outside of the docker package.
+**** extending the SQL database
+  - Place your .SQL scripts in ./src/sql
+  - call them from within the script ./src/sql/init.sql
+**** Python development
+***** Setting up your python environment
+  - Create a virtualenv in the project root
+    #+BEGIN_SRC bash
+python3 -m venv venv
+    #+END_SRC
+  - and enter the venv
+    - windows:
+        #+BEGIN_SRC psl
+    # In cmd.exe
+    venv\Scripts\activate.bat
+    # In PowerShell
+    venv\Scripts\Activate.ps1
+        #+END_SRC
+    - UNIX (linux/macos)
+      #+BEGIN_SRC bash
+        $ source myvenv/bin/activate
+        #+end_src
+  - on UNIX (linux/MacOS/wsl), you can enter the venv with the following command:
+    #+BEGIN_SRC bash
+  source ./src/venv/bin/activate
+    #+END_SRC
+  - Once your venv is activated (should see "venv" near your prompt), run
+    #+BEGIN_SRC bash
+pip install -r requirements.txt
+    #+END_SRC
+***** extending the python environment
+  - the VENV should now contain a number of packages. See *requirements.txt* for a list of these.
+    - If you need to extend the venv, follow these steps:
+      - ensure you are *inside the venv*, and *outside of docker*
+      - pip3 install <package name>
+      - cd to the root of the project directory (where *requirements.txt* is)
+      - use the following command to add the new packages to the project:
+        #+begin_src python3
+        pip freeze > requirements.txt
+        #+end_src
+        or
+        #+begin_src python3
+python3 pip freeze > requirements.txt
+        #+end_src
+**** Adding your code to the Docker
+- Edit src/setup.sh to run the commands necessary to initialize the Django website and server as needed.
+**** Pushing your changes
+- Please create a git branch with you ID (e.g. "mt410"),
+- check out your own branch
+- commit to your own branch
+- push to origin <yourid>
+- and submit a pull request.
