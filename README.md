@@ -37,6 +37,11 @@
 
 ## Instructions
 
+### Cloning the Repo
+
+1. In the terminal navigate to the folder where you want to clone the project.
+2. On the Github repo, click the green "Code" button and copy the HTTPS link.
+3. Back on your terminal, use the command `git clone https://github.com/HCAR-Portfolio-Management/HCARPortfolio.git`
 
 <a id="org84438c7"></a>
 
