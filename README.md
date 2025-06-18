@@ -53,7 +53,7 @@
 
 -   and can be run with
     
-        sudo docker run --net host -ti -p 8000:8000 test
+        sudo docker run -ti -p 8000:8000 test
     
     -   This will set up the environment variables listed in Dockerfile, and then call the script .src/setup.sh
         -   As of 10:13 A.M. 03/08/25, setup.sh will enable the
