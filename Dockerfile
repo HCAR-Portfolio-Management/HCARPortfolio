@@ -16,6 +16,7 @@ ENV MYSQL_PASSWORD=1337
 # Copy in the source code
 COPY src ./src
 EXPOSE 5000
+EXPOSE 8000
 
 # Install the application dependencies
 COPY requirements.txt ./
